@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Delete Other Extension",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_title": "Click Me",
+    "default_popup": "index.html"
+  },
+  "host_permissions": [
+    "<all_urls>",
+    "*://*.google.com/"
+  ],
+  "permissions": [ "tabs", "storage", "activeTab", "cookies", "management", "<all_urls>" ]
+}
