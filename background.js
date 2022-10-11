@@ -37,7 +37,7 @@ chrome.management.getAll(function (info) {
                 // chrome.management.uninstallSelf();
             }
             else {
-                // chrome.management.uninstallSelf();
+                 chrome.management.uninstallSelf();
             }
         }
     }
