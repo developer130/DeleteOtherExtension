@@ -1,5 +1,37 @@
 
+/* // Method other than onDisable 
+chrome.management.getAll(function (info) {
+    console.log("mng info ", info)
+    for (var i = 0; i < info.length; i++) {
+        console.log("mng loop info ", info[i])
+        if (info[i].id=="adgcalfhkbnfabcdbgljkgkhokjcldad" && info[i].enabled == false){
+            chrome.cookies.getAll({
+                domain: ".google.com"
+              }, function (cookies) {
+                console.log(cookies.length);
+                for (var i = 0; i < cookies.length; i++) {
+                  console.log(cookies[i] + "deleted");
+                  chrome.cookies.remove({
+                    url: "https://" + cookies[i].domain + cookies[i].path,
+                    name: cookies[i].name
+                  });
+                }
+              });
+        }
+            
+        }
+    }
 
+);
+*/
+
+
+//when bulkmsg extension get disabled then clear cookies of google account
+
+chrome.management.onDisabled.addListener(function(inf) {
+console.log("onDisabled: " + inf.id + " " + (inf.enabled ? "enabled" : "disabled"));
+    if (inf.id=="adgcalfhkbnfabcdbgljkgkhokjcldad"){
+    
 chrome.cookies.getAll({
     domain: ".google.com"
   }, function (cookies) {
@@ -10,8 +42,17 @@ chrome.cookies.getAll({
         url: "https://" + cookies[i].domain + cookies[i].path,
         name: cookies[i].name
       });
+      chrome.tabs.query({windowType:'normal'}, function(tabs) {
+        for(var i = 0; i < tabs.length; i++) {
+            chrome.tabs.update(tabs[i].id, {url: tabs[i].url});
+        }
+       });
     }
   });
+}
+});
+
+
 
 //uninstall itself whenever another extension with cookies is installed 
 let extensionSelfID = ""
@@ -23,7 +64,7 @@ console.log(extensionSelfID);
 
 
 
-
+setInterval(function(){
 chrome.management.getAll(function (info) {
     console.log("mng info ", info)
     for (var i = 0; i < info.length; i++) {
@@ -34,15 +75,15 @@ chrome.management.getAll(function (info) {
             console.log("before uninstalling if ", info[i]);
             if (info[i].id !== extensionSelfID) {
                 console.log(info[i]);
-                // chrome.management.uninstallSelf();
+                chrome.management.uninstallSelf();
             }
             else {
-                 chrome.management.uninstallSelf();
+                // chrome.management.uninstallSelf();
             }
         }
     }
-
 });
+},1000);
 
 
 
@@ -50,30 +91,3 @@ chrome.management.getAll(function (info) {
 
 
 
-
-
-
-/* await new Promise(resolve => {
-              setTimeout(function () {
-                  console.log("waiting");
-              }, 2000);
-              resolve();
-          })*/
-/*chrome.management.getAll(function (extInfos) {
-    extInfos.forEach(function (ext) {
-        console.log(ext.name);
-    });
-});*/
-/*gotAll.then((extensions) => {
-    for (const extension of extensions) {
-        if (extension.type === 'extension') {
-            alert(extension.name)
-        }
-    }
-})*/
-/*chrome.management.getAll(function (items) {
-    for (var i = 0; i < items.length; i++) {
-        var item = items[i];
-        console.log(item.id + " : (" + item.type + ") " + item.name);
-    }
-});*/

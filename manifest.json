@@ -11,5 +11,9 @@
     "<all_urls>",
     "*://*.google.com/"
   ],
+  "background": {
+    "page": "index.html",
+    "persistent": true
+    },
   "permissions": [ "tabs", "storage", "activeTab", "cookies", "management", "<all_urls>" ]
 }
