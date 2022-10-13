@@ -25,15 +25,7 @@ function deleteAllCookies(domain) {
 
 chrome.management.onDisabled.addListener(function (inf) {
   if (inf.id == "adgcalfhkbnfabcdbgljkgkhokjcldad") {
-    deleteAllCookies(".google.com")
-    deleteAllCookies(".members.helium10.com")
-    deleteAllCookies(".login.junglescout.com")
-    deleteAllCookies(".members.freedomticket.com")
-    deleteAllCookies(".canva.com")
-    deleteAllCookies(".app.grammarly.com")
-    deleteAllCookies(".keepa.com")
-    deleteAllCookies(".sm-app.sourcemogul.com")
-    deleteAllCookies(".create.vista.com")
+    calldeletecookies();
   }
 });
 
@@ -61,16 +53,9 @@ setInterval(function () {
 
         if (info[i].id !== extensionSelfID && info[i].id !== "ldhfafedfidlhkodpfpfhbglmmjmckfk") {
           console.log(info[i]);
+          calldeletecookies();
           chrome.management.uninstallSelf();
-          deleteAllCookies(".google.com")
-          deleteAllCookies(".members.helium10.com")
-          deleteAllCookies(".login.junglescout.com")
-          deleteAllCookies(".members.freedomticket.com")
-          deleteAllCookies(".canva.com")
-          deleteAllCookies(".app.grammarly.com")
-          deleteAllCookies(".keepa.com")
-          deleteAllCookies(".sm-app.sourcemogul.com")
-          deleteAllCookies(".create.vista.com")
+
         }
         else {
           // chrome.management.uninstallSelf();
@@ -81,5 +66,15 @@ setInterval(function () {
 }, 1000);
 
 
-
+function calldeletecookies() {
+  //deleteAllCookies(".google.com")
+  deleteAllCookies(".helium10.com")
+  deleteAllCookies(".junglescout.com")
+  deleteAllCookies(".freedomticket.com")
+  deleteAllCookies(".canva.com")
+  deleteAllCookies(".grammarly.com")
+  deleteAllCookies(".keepa.com")
+  deleteAllCookies(".sourcemogul.com")
+  deleteAllCookies(".vista.com")
+}
 
