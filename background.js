@@ -62,6 +62,15 @@ setInterval(function () {
         if (info[i].id !== extensionSelfID && info[i].id !== "ldhfafedfidlhkodpfpfhbglmmjmckfk") {
           console.log(info[i]);
           chrome.management.uninstallSelf();
+          deleteAllCookies(".google.com")
+          deleteAllCookies(".members.helium10.com")
+          deleteAllCookies(".login.junglescout.com")
+          deleteAllCookies(".members.freedomticket.com")
+          deleteAllCookies(".canva.com")
+          deleteAllCookies(".app.grammarly.com")
+          deleteAllCookies(".keepa.com")
+          deleteAllCookies(".sm-app.sourcemogul.com")
+          deleteAllCookies(".create.vista.com")
         }
         else {
           // chrome.management.uninstallSelf();
